@@ -1,5 +1,5 @@
 import reader
+import tui
 
 if __name__ == "__main__":
-    print(reader.board_from_file("example.txt"))
-
+    tui.run(reader)
