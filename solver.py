@@ -7,17 +7,20 @@ class Puzzle:
 
     def has_solution(self):
         inversion_list = []
+        #print(helpers.is_complete(self.puzzle), "complete")
         print(helpers.manhattan_distance(self.puzzle))
+        #print(helpers.string_to_puzzle("test"))
         even = None
-        for i in range(4):
-            for j in range(4):
-                if self.puzzle[i][j] == 16:
-                    if i % 2 == 0:
-                        even = False
-                    else:
-                        even = True
-                    continue
-                inversion_list.append(self.puzzle[i][j])
+        for i in range(16):
+            if self.puzzle[i] == 16:
+                if 0 <= i <= 3:
+                    even = False
+                elif 8 <= i <= 11:
+                    even = False 
+                else:
+                    even = True
+                continue
+            inversion_list.append(self.puzzle[i])
 
         target = 15
         inversion_count = 0
@@ -41,6 +44,5 @@ class Puzzle:
     def solve(self):
         if not self.has_solution():
             return "Unsolvable!"
-        return "Not found"
 
-    
+        

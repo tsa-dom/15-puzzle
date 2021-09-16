@@ -1,5 +1,5 @@
 def puzzle_from_file(file_name):
-    puzzle = [[0 for x in range(4)] for y in range(4)]
+    puzzle = []
     try:
         file = open(file_name, "r")
     except:
@@ -8,8 +8,7 @@ def puzzle_from_file(file_name):
         for i in range(4):
             line = file.readline().split('\n')[0].split(' ')
             for j in range(4):
-                puzzle[i][j] = int(line[j])
+                puzzle.append(int(line[j]))
     except:
         return "initialization failed"
-
     return puzzle
