@@ -1,3 +1,5 @@
+import time
+
 def ida_star(puzzle):
     bound = manhattan_distance(puzzle)
     path = [puzzle]
@@ -8,7 +10,6 @@ def ida_star(puzzle):
         if new_bound == "Found":
             return [path, bound]
         bound = new_bound
-        
 
 def search(path, g, bound, path_content):
     node = path[len(path) - 1]
@@ -25,7 +26,7 @@ def search(path, g, bound, path_content):
             path.append(puzzle)
             path_content.add(puzzle_str)
 
-            result = search(path, g + manhattan_distance(puzzle) - manhattan_distance(node), bound, path_content)
+            result = search(path, g + manhattan_distance(puzzle) - manhattan_distance(node) + 1, bound, path_content)
             if result == "Found":
                 return "Found"
             if result < min:

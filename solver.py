@@ -35,15 +35,18 @@ class Puzzle:
             return True
         elif not even and inversion_count % 2 != 0:
             return True
-
+        
         return False
 
     def solve(self):
         if not self.has_solution():
+            #print("Unsolvable!")
             return "Unsolvable!"
-
-        solution = helpers.ida_star(self.puzzle)
-        for i in solution[0]:
-            print(i)
-
         
+        print("Solving...")
+        solution = helpers.ida_star(self.puzzle)
+        #for i in solution[0]:
+        #    print(i)
+        #print(solution[1])
+
+        return [solution[1], self.puzzle]
