@@ -7,9 +7,6 @@ class Puzzle:
 
     def has_solution(self):
         inversion_list = []
-        #print(helpers.is_complete(self.puzzle), "complete")
-        print(helpers.manhattan_distance(self.puzzle))
-        #print(helpers.string_to_puzzle("test"))
         even = None
         for i in range(16):
             if self.puzzle[i] == 16:
@@ -44,5 +41,9 @@ class Puzzle:
     def solve(self):
         if not self.has_solution():
             return "Unsolvable!"
+
+        solution = helpers.ida_star(self.puzzle)
+        for i in solution[0]:
+            print(i)
 
         

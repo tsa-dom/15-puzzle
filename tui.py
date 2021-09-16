@@ -2,7 +2,7 @@ from solver import Puzzle
 
 def run(reader):
     puzzle = Puzzle(reader.puzzle_from_file("example.txt"))
-    print(puzzle.has_solution())
+    puzzle.solve()
     while False:
         cmd = input("cmd > ")
         if (cmd == "init"):
