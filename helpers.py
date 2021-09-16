@@ -25,7 +25,7 @@ def search(path, g, bound, path_content):
             path.append(puzzle)
             path_content.add(puzzle_str)
 
-            result = search(path, f + 1, bound, path_content)
+            result = search(path, g + manhattan_distance(puzzle) - manhattan_distance(node), bound, path_content)
             if result == "Found":
                 return "Found"
             if result < min:
@@ -60,6 +60,9 @@ def get_successors(node):
         successors.append(swap(node, x - 1, p3 - 1))
     if p4 != None:
         successors.append(swap(node, x - 1, p4 - 1))
+
+    successors.sort(key=manhattan_distance)
+
     return successors
 
 
