@@ -1,6 +1,15 @@
 import time
 
+
 def ida_star(puzzle):
+    """ IDA* algorithm
+
+    Args:
+        puzzle ([int]): the initial state of the game
+
+    Returns:
+        [[[int]], int]: contains a list which contains a path and a number of swaps
+    """
     bound = manhattan_distance(puzzle)
     path = [puzzle]
     path_content = set()
@@ -12,6 +21,17 @@ def ida_star(puzzle):
         bound = new_bound
 
 def search(path, g, bound, path_content):
+    """ IDA* searching algorithm
+
+    Args:
+        path ([int]): current path
+        g (int): current path cost
+        bound (int): maximum cost
+        path_content ([string]): current path as a set
+
+    Returns:
+        type : returns "Found" or a new minimum value to cost 
+    """
     node = path[len(path) - 1]
     f = g + manhattan_distance(node)
     if f > bound:
@@ -36,11 +56,29 @@ def search(path, g, bound, path_content):
     return min
 
 def swap(puzzle, i, j):
+    """ Swaps two puzzle pieces
+
+    Args:
+        puzzle ([int]): the puzzle to be swapped
+        i (int): puzzle list index
+        j (int): puzzle list index
+
+    Returns:
+        [int]: new puzzle with swapped tiles
+    """
     swap = puzzle.copy()
     swap[i], swap[j] = swap[j], swap[i]
     return swap
 
 def get_successors(node):
+    """ Finds all node successors and sorts them depending on Manhattan distance
+
+    Args:
+        node ([int]): current puzzle state as a node
+
+    Returns:
+        [[int]]: list of node children
+    """
     x = find_16(node) + 1
     p1, p2, p3, p4 = None, None, None, None
     successors = []
@@ -68,11 +106,27 @@ def get_successors(node):
 
 
 def find_16(puzzle):
+    """ Finds a puzzle index with value 16
+
+    Args:
+        puzzle ([int]): puzzle
+
+    Returns:
+        int: the index where the number 16 is in the puzzle
+    """
     for i in range(16):
         if puzzle[i] == 16:
             return i
 
 def puzzle_to_string(puzzle):
+    """ Method to convert puzzle array to string
+
+    Args:
+        puzzle ([int]): puzzle
+
+    Returns:
+        string: string value of the puzzle state
+    """
     string = ""
     for i in puzzle:
         if i < 10:
@@ -95,6 +149,14 @@ def puzzle_to_string(puzzle):
     return string
 
 def manhattan_distance(puzzle):
+    """ Manhattan distance calculation method
+
+    Args:
+        puzzle ([int]): puzzle
+
+    Returns:
+        int: calculated Manhattan distance
+    """
     distance = 0
     for p in range(16):
         piece = puzzle[p] - 1
@@ -104,6 +166,14 @@ def manhattan_distance(puzzle):
     return distance
 
 def is_complete(puzzle):
+    """ Checks if a given puzzle is completed
+
+    Args:
+        puzzle ([int]): puzzle
+
+    Returns:
+        [bool]: true if puzzle is completed and false if not
+    """
     for i in range(16):
         if i + 1 != puzzle[i]:
             return False

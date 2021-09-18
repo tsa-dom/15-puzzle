@@ -3,9 +3,19 @@ import helpers
 class Puzzle:
     
     def __init__(self, puzzle):
+        """ A new puzzle initialization function
+
+        Args:
+            puzzle ([int]): desired puzzle initial state
+        """
         self.puzzle = puzzle
 
     def has_solution(self):
+        """ Checks if the puzzle has a solution
+
+        Returns:
+            bool: true if the solution exist and false if not
+        """
         inversion_list = []
         even = None
         for i in range(16):
@@ -42,11 +52,14 @@ class Puzzle:
         if not self.has_solution():
             #print("Unsolvable!")
             return "Unsolvable!"
-        
+        print(helpers.manhattan_distance(self.puzzle))
         print("Solving...")
         solution = helpers.ida_star(self.puzzle)
-        #for i in solution[0]:
-        #    print(i)
-        #print(solution[1])
+        for i in solution[0]:
+            print(i)
+        print(solution[1])
 
         return [solution[1], self.puzzle]
+
+    def get_puzzle(self):
+        return self.puzzle

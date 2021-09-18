@@ -1,4 +1,12 @@
 def puzzle_from_file(file_name):
+    """ File reading functionality
+
+    Args:
+        file_name (string): name of the file to be read
+
+    Returns:
+        [int]: a puzzle if reading success and an error if not
+    """
     puzzle = []
     try:
         file = open(file_name, "r")
