@@ -1,4 +1,4 @@
-# Viikkoraportti 1
+# Viikkoraportti 2
 
 ### Mitä olen tehnyt tällä viikolla?
 * Muodostin toimivan 15-peliä ratkaisevan rungon projektille. Aloitin testaamaan sovellusta unittest kirjastolla.
