@@ -10,6 +10,7 @@
 ## Dokumentaatio
 
 * [Määrittelydokumentti](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/M%C3%A4%C3%A4rittelydokumentti.md)
+* [Käyttöohje](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/K%C3%A4ytt%C3%B6ohje.md)
 * [Testausdokumentti](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Testausdokumentti.md)
 * [Toteutusdokumentti](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Toteutusdokumentti.md)
 
