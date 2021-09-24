@@ -1,4 +1,4 @@
-import helpers
+from src.app import helpers
 
 def get_heuristic(puzzle, heuristic):
     """ Heuristic function getter

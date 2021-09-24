@@ -1,5 +1,5 @@
-import heuristic
-import helpers
+from src.app import heuristic
+from src.app import helpers
 
 def ida_star(puzzle, heuristic_name):
     """ IDA* algorithm

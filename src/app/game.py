@@ -1,5 +1,5 @@
-import algorithm
-import helpers
+from src.app import algorithm
+from src.app import helpers
 
 class Puzzle:
     

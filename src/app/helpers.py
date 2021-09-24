@@ -1,5 +1,4 @@
-import heuristic
-from functools import partial
+from src.app import heuristic
 
 def swap(puzzle, i, j):
     """ Swaps two puzzle pieces
