@@ -2,22 +2,42 @@
 
 ## Kehitysympäristön luominen
 
-Sovellukselle kannattaa luoda oma virtuaali ympäristö komennolla
+### Windows ympäristö
+
+Nämä ohjeet olettavat, että käytät windowsin git bashia. Voit luoda sovelluksen virtuaaliympäristön komennolla
 
     python -m venv venv
 
-Seuraavat komennot olettavat, että käytät Windowsin git bashia. Virtuaaliympäristö voidaan aktivoida komennolla
+Virtuaaliympäristön aktivointi tapahtuu komennolla
 
     source venv/Scripts/activate
 
-Asenna riippuvuudet komennolla
+Sovelluksen riippuvuudet voidaan asentaa komennolla
 
-    pip install -r requirements.
-    
+    pip install -r requirements.txt
+
+### Ubuntu 20.04
+
+Nämä ohjeet olettavat, että käytät Ubuntu 20.04 käyttöjärjestelmää. Toiminevat kuitenkin todennäköisesti muillakin linux distroilla. Sovelluksen virtuaaliympäristö voidaan luoda komennolla
+
+    python3 -m venv venv
+
+Virtuaaliympäristön aktivointi
+
+    source venv/bin/activate
+
+Riippuvuuksien asennus
+
+    pip install -r requirements.txt
+
 ## Sovelluksen käyttäminen
 
-Sovelluksen voi käynnistää komennolla
+Sovellus käynnistetään komennolla
 
     python run.py
+
+tai
+
+    python3 run.py
 
 Oletusarvoisesti sovellus tulostaa ensimmäisen example.txt tiedostossa olevan pelin. Tiedosto run.py voi vapaasti muokata esimerkiksi ajamaan satunnaisia pelejä ja tehdä tehokkuusvertailua niille.
