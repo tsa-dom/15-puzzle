@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/tsa-dom/15-puzzle/branch/main/graph/badge.svg?token=V3QJB8QLZA)](https://codecov.io/gh/tsa-dom/15-puzzle)
 # 15-pelin ratkaisija
 
 ## Yleistietoa
