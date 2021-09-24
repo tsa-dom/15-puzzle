@@ -148,6 +148,35 @@ def puzzle_to_string(puzzle):
     
     return string
 
+"""
+* * * *
+* x * *
+* 6 * *
+* * * *
+x => 5
+6 => 9
+* * * *
+* x 6 *
+* * * *
+* * * *
+x => 5
+6 => 6
+"""
+def linear_conflict(puzzle, i, j):
+    if i != puzzle[j] - 1 or i == j:
+        return False
+    if (i - j) % 4 == 0:
+        return True
+    if 0 <= i < 4 and 0<= j < 4:
+        return True
+    if 4 <= i < 8 and 4<= j < 8:
+        return True
+    if 8 <= i < 12 and 8<= j < 12:
+        return True
+    if 12 <= i < 16 and 12<= j < 16:
+        return True
+    return False
+
 def manhattan_distance(puzzle):
     """ Manhattan distance calculation method
 
@@ -157,6 +186,28 @@ def manhattan_distance(puzzle):
     Returns:
         int: calculated Manhattan distance
     """
+    distance = 0
+    for p in range(16):
+        piece = puzzle[p] - 1
+        if piece == 15:
+            continue
+        if linear_conflict(puzzle, p, piece):
+            distance += 1
+        distance += abs(piece // 4 - p // 4) + abs(piece % 4 - p % 4)
+    return distance
+
+def manhattan_linear_conflict(puzzle):
+    distance = 0
+    for p in range(16):
+        piece = puzzle[p] - 1
+        if piece == 15:
+            continue
+        if linear_conflict(puzzle, p, piece):
+            distance += 1
+        distance += abs(piece // 4 - p // 4) + abs(piece % 4 - p % 4)
+    return distance
+
+def walking_distance(puzzle):
     distance = 0
     for p in range(16):
         piece = puzzle[p] - 1
