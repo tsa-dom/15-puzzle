@@ -1,5 +1,5 @@
 import unittest
-from solver import Puzzle
+from game import Puzzle
 import helpers
 
 class HelperTests(unittest.TestCase):

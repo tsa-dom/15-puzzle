@@ -1,22 +1,25 @@
+import algorithm
 import helpers
 
 class Puzzle:
     
-    def __init__(self, puzzle):
+    def __init__(self, puzzle, heuristic):
         """ A new puzzle initialization function
-
         Args:
-            puzzle ([int]): desired puzzle initial state
+            puzzle [int]: desired puzzle initial state
         """
         self.puzzle = puzzle
+        self.heuristic = heuristic
+
+    def change_heuristic(self, heuristic):
+        self.heuristic = heuristic
 
     def has_solution(self):
         """ Checks if the puzzle has a solution
-
         Returns:
             bool: true if the solution exist and false if not
         """
-        inversion_list = []
+        
         even = None
         for i in range(16):
             if self.puzzle[i] == 16:
@@ -26,21 +29,9 @@ class Puzzle:
                     even = False 
                 else:
                     even = True
-                continue
-            inversion_list.append(self.puzzle[i])
+                break
 
-        target = 15
-        inversion_count = 0
-        while target > 1:
-            pointer = 0
-            while pointer < target - 1:
-                if inversion_list[pointer] == target:
-                    inversion_list[pointer], inversion_list[pointer + 1] = inversion_list[pointer + 1], inversion_list[pointer]
-                    inversion_count += 1
-                pointer += 1
-
-            target -= 1
-            
+        inversion_count = helpers.inversion_count(self.puzzle)
         if even and inversion_count % 2 == 0:
             return True
         elif not even and inversion_count % 2 != 0:
@@ -49,17 +40,16 @@ class Puzzle:
         return False
 
     def solve(self):
+        """ Solve puzzle
+        Returns:
+            [[int]]: solution
+        """
         if not self.has_solution():
-            #print("Unsolvable!")
             return "Unsolvable!"
-        print(helpers.manhattan_distance(self.puzzle))
         print("Solving...")
-        solution = helpers.ida_star(self.puzzle)
-        for i in solution[0]:
-            print(i)
-        print(solution[1])
+        solution = algorithm.ida_star(self.puzzle, self.heuristic)
 
-        return [solution[1], self.puzzle]
+        return solution
 
     def get_puzzle(self):
         return self.puzzle
