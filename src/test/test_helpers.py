@@ -1,6 +1,58 @@
 import unittest
 from src.app import helpers
 
+class TestInversionCount(unittest.TestCase):
+    def test_inverstion_count_is_correct(self):
+        self.assertEqual(helpers.inversion_count(
+            [6, 13, 7, 10, 8, 9, 11, 16, 15, 2, 12, 5, 14, 3, 1, 4]
+        ), 62)
+
+class TestLinearConflict(unittest.TestCase):
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_row1(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 8, 7, 6, 9, 10, 11, 12, 13, 14, 15, 16], 5, 7
+        ), True)
+
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_row2(self):
+        self.assertEqual(helpers.linear_conflict(
+            [4, 2, 3, 1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 3, 0
+        ), True)
+
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_row3(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 6, 7, 8, 10, 9, 11, 12, 13, 14, 15, 16], 8, 9
+        ), True)
+
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_row4(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 14, 13, 16], 12, 14
+        ), True)
+
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_col1(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 10, 7, 8, 9, 6, 11, 12, 13, 14, 15, 16], 9, 5
+        ), True)
+
+    def test_there_is_linear_conflict_if_two_pieces_are_on_the_same_col2(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 14, 3, 4, 5, 6, 7, 8, 9, 6, 11, 12, 13, 2, 15, 16], 1, 13
+        ), True)
+
+    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 7, 3, 4, 5, 6, 2, 8, 9, 6, 11, 12, 13, 14, 15, 16], 1, 6
+        ), False)
+
+    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 6, 14, 8, 9, 6, 11, 12, 13, 7, 15, 16], 6, 13
+        ), False)
+    
+    def test_there_is_no_linear_conflict_if_tho_pieces_are_same(self):
+        self.assertEqual(helpers.linear_conflict(
+            [1, 2, 3, 4, 5, 6, 14, 8, 9, 6, 11, 12, 13, 7, 15, 16], 6, 6
+        ), False)
+
 class TestUtils(unittest.TestCase):
     def test_correct_tiles_are_swapped(self):
         self.assertEqual(helpers.swap(
