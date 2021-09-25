@@ -13,3 +13,7 @@ Testikattavuusraportin pystyy generoimaan komennolla
     coverage report -m --omit=src/test/*
 
 Tällä hetkellä sovelluksesta testataan kaikki apufunktiot ja Manhattan etäisyyden laskeminen. Sovelluksessa ei toistaiseksi testata tuottaako peli milläkin heuristiikalla oikean ratkaisun. Lisäksi kaikkia heuristiikoita ei vielä testata, sillä ne ovat osin vielä kehityksen alla.
+
+## Testikattavuus - 25.9.2021
+
+<img src="coverage.png">
