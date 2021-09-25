@@ -2,7 +2,7 @@
 
 ## Kehitysympäristön luominen
 
-### Windows ympäristö
+### Windows
 
 Nämä ohjeet olettavat, että käytät windowsin git bashia. Voit luoda sovelluksen virtuaaliympäristön komennolla
 
