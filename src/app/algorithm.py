@@ -42,7 +42,7 @@ def search(path, g, bound, path_content, heuristic_name):
             path.append(puzzle)
             path_content.add(puzzle_str)
 
-            result = search(path, g + heuristic.get_heuristic(puzzle, heuristic_name) - heuristic.get_heuristic(node, heuristic_name) + 1, bound, path_content, heuristic_name)
+            result = search(path, g + cost(puzzle, node, heuristic_name), bound, path_content, heuristic_name)
             if result == "Found":
                 return "Found"
             if result < min:
@@ -50,3 +50,6 @@ def search(path, g, bound, path_content, heuristic_name):
             path_content.remove(puzzle_str)
             path.pop()
     return min
+
+def cost(node1, node2, heuristic_name):
+    return abs(heuristic.get_heuristic(node1, heuristic_name) - heuristic.get_heuristic(node2, heuristic_name))
