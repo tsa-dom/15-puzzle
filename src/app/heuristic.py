@@ -11,10 +11,6 @@ def get_heuristic(puzzle, heuristic):
     """
     if heuristic == "conflict":
         return manhattan_linear_conflict(puzzle)
-    elif heuristic == "inversion":
-        return inversion(puzzle)
-    elif heuristic == "walking":
-        return walking_distance(puzzle)
     elif heuristic == "euclidic":
         return euclid_distance(puzzle)
     elif heuristic == "misplaced":
@@ -79,38 +75,30 @@ def manhattan_linear_conflict(puzzle):
             conflicts += 1
     return distance + conflicts
 
-def inversion(puzzle):
-    """ Manhattan distance with inversion count
-    Args:
-        puzzle [int]: puzzle
-    Returns:
-        int: calculated Manhattan distance with inversion count
-    """
-    distance = 0
-    horizontal_list = []
-    for i in range(4):
-        for j in range(4):
-            horizontal_list.append(puzzle[i + j * 4])
-    invc_horizontal = helpers.inversion_count(horizontal_list)
-    invc_vertical = helpers.inversion_count(puzzle)
-    distance += (invc_vertical / 3) + (invc_vertical % 3) + (invc_horizontal / 3) + (invc_horizontal % 3)
-    return distance
+# def inversion(puzzle):
+#    """ Manhattan distance with inversion count
+#    Args:
+#        puzzle [int]: puzzle
+#    Returns:
+#        int: calculated Manhattan distance with inversion count
+#    """
+#    horizontal_list = []
+#    for i in range(4):
+#        for j in range(4):
+#            horizontal_list.append(puzzle[i + j * 4])
+#    return helpers.inversion_count(puzzle) + helpers.inversion_count(horizontal_list)
 
-def walking_distance(puzzle):
-    """ Manhattan distance with walking distance
-    Args:
-        puzzle [int]: puzzle
-    Returns:
-        int: calculated Manhattan distance with walking distance
-    """
-    distance = 0
-    for p in range(16):
-        piece = puzzle[p] - 1
-        if piece == 15:
-            continue
-        if helpers.linear_conflict(puzzle, p, piece):
-            distance += 1
-        distance += abs(piece // 4 - p // 4) + abs(piece % 4 - p % 4)
-    invc = helpers.inversion_count(puzzle)
-    distance += (invc / 3) + (invc % 3)
-    return distance
+#def walking_distance(puzzle):
+#    """ Manhattan distance with walking distance
+#    Args:
+#        puzzle [int]: puzzle
+#    Returns:
+#        int: calculated Manhattan distance with walking distance
+#    """
+#    distance = 0
+#    for p in range(16):
+#        piece = puzzle[p] - 1
+#        if piece == 15:
+#            continue
+#        distance += math.sqrt((piece // 4 - p // 4)**2 + (piece % 4 - p % 4)**2)
+#    return distance + inversion(puzzle)
