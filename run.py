@@ -56,7 +56,7 @@ if __name__ == "__main__":
     # - misplaced
     # - manhattan (default)
 
-    if False:
+    if True:
         puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "conflict")
         start = time.perf_counter()
         result = puzzle.solve()
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         print("Puzzle:", puzzle.get_puzzle(), len(result))
         print("Time:", round(end - start, 3), "(seconds)")
 
-    while True:
+    while False:
         list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
         random.shuffle(list_to_shuffle)
         start = time.perf_counter()
