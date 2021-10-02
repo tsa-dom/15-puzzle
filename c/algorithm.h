@@ -4,7 +4,10 @@
 
 using namespace std;
 
-float search (vector<vector<int>> path, int g, int bound, set<string> pathContent) {
+vector<vector<int>> path;
+set<string> pathContent;
+
+float search (int g, int bound) {
     vector<int> node = path[path.size() - 1];
     float f = g + manhattanDistance(node);
     if (f > bound) return f;
@@ -17,7 +20,7 @@ float search (vector<vector<int>> path, int g, int bound, set<string> pathConten
             path.push_back(puzzle);
             pathContent.insert(puzzleStr);
 
-            float result = search(path, g + 1, bound, pathContent);
+            float result = search(g + 1, bound);
             if (result == -2) return -2;
             if (result == -1) {
                 for (int i = 0; i < path.size(); i++) {
@@ -38,10 +41,11 @@ float search (vector<vector<int>> path, int g, int bound, set<string> pathConten
 
 vector<vector<int>> idaStar (vector<int> puzzle) {
     int bound = manhattanDistance(puzzle);
-    vector<vector<int>> path{puzzle};
-    set<string> pathContent{puzzleToString(puzzle)};
+    path.push_back(puzzle);
+
+    pathContent.insert(puzzleToString(puzzle));
     while (true) {
-        int newBound = search(path, 0, bound, pathContent);
+        int newBound = search(0, bound);
         if (newBound == -1 || newBound == -2) {
             return path;
         }

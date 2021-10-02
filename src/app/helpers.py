@@ -21,25 +21,15 @@ def get_successors(node, heuristic_name):
         [[int]]: list of node children
     """
     x = find_16(node) + 1
-    p1, p2, p3, p4 = None, None, None, None
     successors = []
     if x + 4 <= 16:
-        p1 = x + 4
+        successors.append(swap(node, x - 1, x + 3))
     if x - 4 >= 1:
-        p2 = x - 4
+        successors.append(swap(node, x - 1, x - 5))
     if x % 4 != 0:
-        p3 = x + 1
+        successors.append(swap(node, x - 1, x))
     if (x - 1) % 4 != 0:
-        p4 = x - 1
-
-    if p1 != None:
-        successors.append(swap(node, x - 1, p1 - 1))
-    if p2 != None:
-        successors.append(swap(node, x - 1, p2 - 1))
-    if p3 != None:
-        successors.append(swap(node, x - 1, p3 - 1))
-    if p4 != None:
-        successors.append(swap(node, x - 1, p4 - 1))
+        successors.append(swap(node, x - 1, x - 2))
 
     successors.sort(key=lambda x: heuristic.get_heuristic(x, heuristic_name))
 

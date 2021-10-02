@@ -17,3 +17,7 @@ Tällä hetkellä sovelluksesta testataan kaikki apufunktiot ja Manhattan etäis
 ## Testikattavuus - 25.9.2021
 
 <img src="coverage.png">
+
+## Testikattavuus - 2.9.2021
+
+<img src="coverage2.png">

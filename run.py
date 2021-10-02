@@ -3,6 +3,7 @@ from src.app.game import Puzzle
 import random
 import time
 from src.app.helpers import puzzle_to_string
+from src.app.heuristic import manhattan_distance
 
 # Some failure attempts to implement Walking distance heuristic
 """def sort(puzzle):
@@ -57,7 +58,7 @@ if __name__ == "__main__":
     # - manhattan (default)
 
     if True:
-        puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "conflict")
+        puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "manhattan")
         start = time.perf_counter()
         result = puzzle.solve()
         #for i in result:
@@ -66,10 +67,48 @@ if __name__ == "__main__":
         print("-------------------------------------------------------")
         print("Puzzle:", puzzle.get_puzzle(), len(result))
         print("Time:", round(end - start, 3), "(seconds)")
+        print("-------------------------------------------------------")
+
+    assert(0)
+    manhattan_list = []
+    conflict_list = []
+    while len(manhattan_list) < 20:
+        list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        random.shuffle(list_to_shuffle)
+        if (manhattan_distance(list_to_shuffle) > 15): continue
+        manhattan = Puzzle(list_to_shuffle.copy(), "manhattan")
+        conflict = Puzzle(list_to_shuffle.copy(), "conflict")
+        if manhattan.has_solution():
+            print(len(manhattan_list))
+            manhattan_list.append(manhattan)
+            conflict_list.append(conflict)
+    print("Initialized")
+    print("")
+    while len(manhattan_list) > 0:
+        print("")        
+        start = time.perf_counter()
+        puzzle = manhattan_list.pop()
+        result = puzzle.solve()
+        if result == "Unsolvable!":
+            continue
+        end = time.perf_counter()
+        print("Puzzle:", puzzle.get_puzzle(), len(result))
+        print("Time:", round(end - start, 3), "(seconds)")
+    while len(conflict_list) > 0:
+        print("")
+        start = time.perf_counter()
+        puzzle = conflict_list.pop()
+        result = puzzle.solve()
+        if result == "Unsolvable!":
+            continue
+        end = time.perf_counter()
+        print("Puzzle:", puzzle.get_puzzle(), len(result))
+        print("Time:", round(end - start, 3), "(seconds)")        
 
     while False:
         list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
         random.shuffle(list_to_shuffle)
+        if (manhattan_distance(list_to_shuffle) >= 2): continue
         start = time.perf_counter()
         puzzle = Puzzle(list_to_shuffle, "conflict")
         result = puzzle.solve()

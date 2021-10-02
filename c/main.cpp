@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include"algorithm.h"
+#include<chrono>
 
 using namespace std;
 
@@ -28,7 +29,11 @@ int main() {
     }*/
     //vector<int> vect{1, 2, 11, 8, 6, 16, 14, 3, 5, 7, 15, 4, 9, 10, 13, 12};
     vector<int> vect{6, 1, 8, 3, 12, 4, 15, 13, 7, 14, 9, 10, 11, 2, 16, 5};
+    auto start = chrono::high_resolution_clock::now();
     vector<vector<int>> result = idaStar(vect);
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+    cout << duration.count() << endl;
 
     return 0;
 }
