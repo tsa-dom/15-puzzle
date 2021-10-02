@@ -14,9 +14,11 @@ Sovelluksesta on luotu hyvin yksinkertainen C++ tynkäversio ratkaisemaan peliä
 
 ## Suorituskykyvertailua
 
-Alla olevissa kuvissa on suorituskyky vertailu heuristiikkojen Manhattan etäisyys ja Linear Conflict välillä. Kuvista voidaan huomata, että linear conflict heuristiikan osalta jokin on pielessä, nimittäin rivin viimeinen luku listan vieressä kertoo ratkaisuun vaadittujen siirtojen lukumäärän. Siirtojen lukumäärä on Linear Conflict heuristiikan osalta välillä liian suuri. Oletan, että IDA* toimii kuten sen pitää, sillä jokaisella testiyrittämällä nykyisen manhattanin antama siirtojen lukumäärä on kaikista heuristiikoista ollut aina pienin. Alla olevat tapaukset ovat melko yksinkertaisia, sillä ne on generoitu olettaen Manhattan etäisyyden olevan maksimissaan 15 kyseisille peleille. Pelin tehokkuudessa on siis pulaa ja vain yksi heuristiikoista tiedän, että toimii oikein.
+Alla olevissa kuvissa on suorituskyky vertailu heuristiikkojen Manhattan etäisyys ja Linear Conflict välillä. Kuvista voidaan huomata, että linear conflict heuristiikan osalta jokin on pielessä, nimittäin rivin viimeinen luku listan vieressä kertoo ratkaisuun vaadittujen siirtojen lukumäärän. Siirtojen lukumäärä on Linear Conflict heuristiikan osalta välillä liian suuri. Oletan, että IDA* toimii kuten sen pitää, sillä jokaisella testiyrittämällä nykyisen manhattanin antama siirtojen lukumäärä on kaikista heuristiikoista ollut aina pienin. Alla olevat tapaukset ovat melko yksinkertaisia, sillä ne on generoitu olettaen Manhattan etäisyyden olevan maksimissaan 15 kyseisen pelin lähtötilanteelle. Pelin tehokkuudessa on siis pulaa ja vain Manhattan etäisyyden tiedän toimivan oikein.
 
-<img src="../img/manhattan.png"><img src="../img/linear.png">
+Vasemmalla Manhattan etäisyys ja oikealla Linear Conflict.
+
+<img src="../img/manhattan.png" width=425><img src="../img/linear.png" width=450>
 
 ## Työn puutteet
 
