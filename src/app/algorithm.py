@@ -39,13 +39,10 @@ def search(path, g, bound, heuristic_name):
         if puzzle not in path:
             path.append(puzzle)
             
-            result = search(path, g + cost(puzzle, node, heuristic_name), bound, heuristic_name)
+            result = search(path, g + 1, bound, heuristic_name)
             if result == "Found":
                 return "Found"
             if result < min:
                 min = result
             path.pop()
     return min
-
-def cost(node1, node2, heuristic_name):
-    return abs(heuristic.get_heuristic(node1, heuristic_name) - heuristic.get_heuristic(node2, heuristic_name))

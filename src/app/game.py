@@ -8,6 +8,14 @@ class Puzzle:
         Args:
             puzzle [int]: desired puzzle initial state
         """
+        test = {1, 2, 3 ,4 ,5 ,6 ,7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+        if len(puzzle) != 16:
+            raise Exception("Invalid puzzle")
+        for piece in puzzle:
+            if piece not in test:
+                raise Exception("Invalid puzzle")
+            test.remove(piece)
+
         self.puzzle = puzzle
         self.heuristic = heuristic
 

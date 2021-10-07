@@ -5,49 +5,6 @@ import time
 from src.app.helpers import puzzle_to_string
 from src.app.heuristic import manhattan_distance
 
-# Some failure attempts to implement Walking distance heuristic
-"""def sort(puzzle):
-    l1 = puzzle[0:4].copy()
-    l2 = puzzle[4:8].copy()
-    l3 = puzzle[8:12].copy()
-    l4 = puzzle[12:16].copy()
-    l1.sort()
-    l2.sort()
-    l3.sort()
-    l4.sort()
-
-    result = []
-    for i in range(4):
-        result.append(l1[i])
-    for i in range(4):
-        result.append(l2[i])
-    for i in range(4):
-        result.append(l3[i])
-    for i in range(4):
-        result.append(l4[i])
-    return result
-
-
-def generate_all(puzzle, graph, include, sixteen, counter):
-    if counter > 3: return
-    if puzzle_to_string(sort(puzzle)) in include:
-        print(sort(puzzle))
-        return
-    include.add(puzzle_to_string(sort(puzzle)))
-    line = sixteen // 4
-    if line > 0:
-        for i in range(4):
-            new_puzzle = puzzle.copy()
-            new_puzzle[sixteen], new_puzzle[(line - 1) * 4 + i] = new_puzzle[(line - 1) * 4 + i], new_puzzle[sixteen]
-            generate_all(new_puzzle ,graph, include, (line - 1) * 4 + i, counter + 1)
-    if line < 3:
-        for i in range(4):
-            new_puzzle = puzzle.copy()
-            new_puzzle[sixteen], new_puzzle[(line - 1) * 4 + i] = new_puzzle[(line - 1) * 4 + i], new_puzzle[sixteen]
-            generate_all(new_puzzle ,graph, include, (line + 1) * 4 + i, counter + 1)
-    return len(include)"""
-
-
 if __name__ == "__main__":
     """ Main method """
 
@@ -57,25 +14,58 @@ if __name__ == "__main__":
     # - misplaced
     # - manhattan (default)
 
-    if True:
-        puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "manhattan")
+    puzzle = Puzzle([2, 1, 3, 4, 5, 10, 15, 11, 9, 6, 7, 8, 13, 14, 12, 16], "conflict")
+
+    while True:
+        cmd = input("cmd > ")
+        if cmd == "exit":
+            break
+        elif cmd == "init":
+            try:
+                puzzle_input = list(map(int, input("numbers separated by spaces > ").split(" ")))
+                heuristic_input = input("heuristic name > ")
+                puzzle = Puzzle(puzzle_input, heuristic_input)
+                if not puzzle.has_solution():
+                    print("This puzzle has no solution")
+                else:
+                    start = time.perf_counter()
+                    result = puzzle.solve()
+                    end = time.perf_counter()
+                    print("-------------------------------------------------------")
+                    print("Puzzle:", puzzle.get_puzzle())
+                    print("Time taken to solve this puzzle:", round(end - start, 3), "(seconds)")
+                    print("Moves needed to solve this puzzle:", len(result) - 1)
+                    print("")
+                    for i in result:
+                        print(i)
+                    print("-------------------------------------------------------")
+            except:
+                print("Puzzle initilization failed")
+
+
+
+
+    assert(0)
+
+    if False:
+        #puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "conflict")
+        puzzle = Puzzle([2, 1, 3, 4, 5, 10, 15, 11, 9, 6, 7, 8, 13, 14, 12, 16], "conflict")
         start = time.perf_counter()
         result = puzzle.solve()
-        #for i in result:
-        #    print(i)
+        for i in result:
+            print(i)
         end = time.perf_counter()
         print("-------------------------------------------------------")
         print("Puzzle:", puzzle.get_puzzle(), len(result))
         print("Time:", round(end - start, 3), "(seconds)")
         print("-------------------------------------------------------")
 
-    assert(0)
     manhattan_list = []
     conflict_list = []
-    while len(manhattan_list) < 20:
+    while len(manhattan_list) < 1:
         list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
         random.shuffle(list_to_shuffle)
-        if (manhattan_distance(list_to_shuffle) > 15): continue
+        if (manhattan_distance(list_to_shuffle) > 50): continue
         manhattan = Puzzle(list_to_shuffle.copy(), "manhattan")
         conflict = Puzzle(list_to_shuffle.copy(), "conflict")
         if manhattan.has_solution():
@@ -84,20 +74,21 @@ if __name__ == "__main__":
             conflict_list.append(conflict)
     print("Initialized")
     print("")
-    while len(manhattan_list) > 0:
-        print("")        
+    while len(conflict_list) > 0:
+        print("")
         start = time.perf_counter()
-        puzzle = manhattan_list.pop()
+        puzzle = conflict_list.pop()
         result = puzzle.solve()
         if result == "Unsolvable!":
             continue
         end = time.perf_counter()
         print("Puzzle:", puzzle.get_puzzle(), len(result))
         print("Time:", round(end - start, 3), "(seconds)")
-    while len(conflict_list) > 0:
-        print("")
+    print("----------------------------------------------------")
+    while len(manhattan_list) > 0:
+        print("")        
         start = time.perf_counter()
-        puzzle = conflict_list.pop()
+        puzzle = manhattan_list.pop()
         result = puzzle.solve()
         if result == "Unsolvable!":
             continue
