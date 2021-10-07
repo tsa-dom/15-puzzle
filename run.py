@@ -5,6 +5,16 @@ import time
 from src.app.helpers import puzzle_to_string
 from src.app.heuristic import manhattan_distance
 
+def info(puzzle):
+    start = time.perf_counter()
+    result = puzzle.solve()
+    end = time.perf_counter()
+    print("Puzzle:", puzzle.get_puzzle())
+    print("Time taken to solve this puzzle:", round(end - start, 3), "(seconds)")
+    print("Moves needed to solve this puzzle:", len(result) - 1)
+    print("Using heurisitc:", puzzle.get_heuristic())
+    return result
+
 if __name__ == "__main__":
     """ Main method """
 
@@ -28,19 +38,42 @@ if __name__ == "__main__":
                 if not puzzle.has_solution():
                     print("This puzzle has no solution")
                 else:
-                    start = time.perf_counter()
-                    result = puzzle.solve()
-                    end = time.perf_counter()
                     print("-------------------------------------------------------")
-                    print("Puzzle:", puzzle.get_puzzle())
-                    print("Time taken to solve this puzzle:", round(end - start, 3), "(seconds)")
-                    print("Moves needed to solve this puzzle:", len(result) - 1)
+                    result = info(puzzle)
                     print("")
                     for i in result:
                         print(i)
                     print("-------------------------------------------------------")
             except:
                 print("Puzzle initilization failed")
+        elif cmd == "compare":
+            try:    
+                heuristic_1 = input("First heuristic > ")
+                heuristic_2 = input("Second heuristic > ")
+                count = int(input("Number of puzzles > "))
+                max_manhattan = int(input("Maximum starting Manhattan distance to a puzzle > "))
+                print("")
+                puzzles = 0
+                while puzzles < count:
+                    list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+                    random.shuffle(list_to_shuffle)
+                    if (manhattan_distance(list_to_shuffle) > max_manhattan): continue
+                    puzzle = Puzzle(list_to_shuffle, heuristic_1)
+                    if puzzle.has_solution():
+                        print("-------------------------------------------------------")
+                        info(puzzle)
+                        print("")
+                        puzzle.change_heuristic(heuristic_2)
+                        info(puzzle)
+                        print("-------------------------------------------------------")
+            except:
+                print("Compare initilization failed")
+        elif cmd == "help":
+            print("-------------------------------------------------------")
+            print("Available commands:")
+            print("* help")
+            print("* init (try to solve any puzzle you want to solve)")
+            print("* exit")
 
 
 

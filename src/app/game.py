@@ -61,3 +61,6 @@ class Puzzle:
 
     def get_puzzle(self):
         return self.puzzle
+
+    def get_heuristic(self):
+        return self.heuristic
