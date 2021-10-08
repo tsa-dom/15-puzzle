@@ -1,4 +1,8 @@
-from src.app import heuristic
+"""
+Useful helper functions
+"""
+
+from src.app import heuristic # pylint: disable=import-error
 
 def swap(puzzle, i, j):
     """ Swaps two puzzle pieces

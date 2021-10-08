@@ -1,11 +1,13 @@
-import reader
-from src.app.game import Puzzle
-import random
+""" Run module """
+
 import time
-from src.app.helpers import puzzle_to_string
+import random
+from src.app.game import Puzzle
 from src.app.heuristic import manhattan_distance
 
 def info(puzzle):
+    """ Print info """
+
     start = time.perf_counter()
     result = puzzle.solve()
     end = time.perf_counter()
@@ -14,6 +16,17 @@ def info(puzzle):
     print("Moves needed to solve this puzzle:", len(result) - 1)
     print("Using heurisitc:", puzzle.get_heuristic())
     return result
+
+def heuristic_names():
+    """ List all available heuristics """
+
+    print("-------------------------------------------------------")
+    print("Available heuristics")
+    print("* manhattan (Manhattan distance, default")
+    print("* conflict (Linear conflict with Manhattan distance")
+    print("* euclidic (Euclidic distance)")
+    print("* misplaced (Misplaced distance, actually so slow that it's almost useless)")
+    print("-------------------------------------------------------")
 
 if __name__ == "__main__":
     """ Main method """
@@ -31,8 +44,9 @@ if __name__ == "__main__":
         if cmd == "exit":
             break
         elif cmd == "solve":
+            heuristic_names()
             try:
-                puzzle_input = list(map(int, input("numbers separated by spaces: ").split(" ")))
+                puzzle_input = list(map(int, input("puzzle initial state as numbers separated by spaces: ").split(" ")))
                 heuristic_input = input("heuristic name: ")
                 puzzle = Puzzle(puzzle_input, heuristic_input)
                 if not puzzle.has_solution():
@@ -47,17 +61,19 @@ if __name__ == "__main__":
             except:
                 print("Puzzle initilization failed")
         elif cmd == "compare":
-            try:    
+            try:
+                heuristic_names()
                 heuristic_1 = input("first heuristic: ")
                 heuristic_2 = input("second heuristic: ")
                 count = int(input("number of puzzles: "))
                 max_manhattan = int(input("maximum starting Manhattan distance to a puzzle: "))
                 print("")
-                puzzles = 0
-                while puzzles < count:
+                PUZZLES = 0
+                while PUZZLES < count:
                     list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     random.shuffle(list_to_shuffle)
-                    if (manhattan_distance(list_to_shuffle) > max_manhattan): continue
+                    if (manhattan_distance(list_to_shuffle) > max_manhattan):
+                        continue
                     puzzle = Puzzle(list_to_shuffle, heuristic_1)
                     if puzzle.has_solution():
                         print("-------------------------------------------------------")
@@ -66,8 +82,8 @@ if __name__ == "__main__":
                         puzzle.change_heuristic(heuristic_2)
                         info(puzzle)
                         print("-------------------------------------------------------")
-                        puzzles += 1
-            except:
+                        PUZZLES += 1
+            except: 
                 print("Compare initilization failed")
         elif cmd == "help":
             print("-------------------------------------------------------")
@@ -77,70 +93,4 @@ if __name__ == "__main__":
             print("* compare (compare efficiency between two heuristics)")
             print("* exit")
             print("-------------------------------------------------------")
-
-
-
-
-    assert(0)
-
-    if False:
-        #puzzle = Puzzle(reader.puzzle_from_file("example.txt"), "conflict")
-        puzzle = Puzzle([2, 1, 3, 4, 5, 10, 15, 11, 9, 6, 7, 8, 13, 14, 12, 16], "conflict")
-        start = time.perf_counter()
-        result = puzzle.solve()
-        for i in result:
-            print(i)
-        end = time.perf_counter()
-        print("-------------------------------------------------------")
-        print("Puzzle:", puzzle.get_puzzle(), len(result))
-        print("Time:", round(end - start, 3), "(seconds)")
-        print("-------------------------------------------------------")
-
-    manhattan_list = []
-    conflict_list = []
-    while len(manhattan_list) < 1:
-        list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-        random.shuffle(list_to_shuffle)
-        if (manhattan_distance(list_to_shuffle) > 50): continue
-        manhattan = Puzzle(list_to_shuffle.copy(), "manhattan")
-        conflict = Puzzle(list_to_shuffle.copy(), "conflict")
-        if manhattan.has_solution():
-            print(len(manhattan_list))
-            manhattan_list.append(manhattan)
-            conflict_list.append(conflict)
-    print("Initialized")
-    print("")
-    while len(conflict_list) > 0:
-        print("")
-        start = time.perf_counter()
-        puzzle = conflict_list.pop()
-        result = puzzle.solve()
-        if result == "Unsolvable!":
-            continue
-        end = time.perf_counter()
-        print("Puzzle:", puzzle.get_puzzle(), len(result))
-        print("Time:", round(end - start, 3), "(seconds)")
-    print("----------------------------------------------------")
-    while len(manhattan_list) > 0:
-        print("")        
-        start = time.perf_counter()
-        puzzle = manhattan_list.pop()
-        result = puzzle.solve()
-        if result == "Unsolvable!":
-            continue
-        end = time.perf_counter()
-        print("Puzzle:", puzzle.get_puzzle(), len(result))
-        print("Time:", round(end - start, 3), "(seconds)")        
-
-    while False:
-        list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-        random.shuffle(list_to_shuffle)
-        if (manhattan_distance(list_to_shuffle) >= 2): continue
-        start = time.perf_counter()
-        puzzle = Puzzle(list_to_shuffle, "conflict")
-        result = puzzle.solve()
-        if result == "Unsolvable!":
-            continue
-        end = time.perf_counter()
-        print("Puzzle:", puzzle.get_puzzle(), len(result))
-        print("Time:", round(end - start, 3), "(seconds)")
+    print("Bye")

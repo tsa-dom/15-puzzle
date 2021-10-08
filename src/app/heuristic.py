@@ -1,5 +1,9 @@
-from src.app import helpers
-import math
+"""
+All used heuristics are stored here
+"""
+
+from math import sqrt
+from src.app import helpers # pylint: disable=import-error
 
 def get_heuristic(puzzle, heuristic):
     """ Heuristic function getter
@@ -50,7 +54,7 @@ def euclid_distance(puzzle):
         piece = puzzle[p] - 1
         if piece == 15:
             continue
-        distance += math.sqrt((piece // 4 - p // 4)**2 + (piece % 4 - p % 4)**2)
+        distance += sqrt((piece // 4 - p // 4)**2 + (piece % 4 - p % 4)**2)
     return distance
 
 def manhattan_linear_conflict(puzzle):

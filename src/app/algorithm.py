@@ -1,5 +1,5 @@
-from src.app import heuristic
-from src.app import helpers
+from src.app import heuristic # pylint: disable=import-error
+from src.app import helpers # pylint: disable=import-error
 
 def ida_star(puzzle, heuristic_name):
     """ IDA* algorithm

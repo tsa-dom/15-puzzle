@@ -1,5 +1,5 @@
 import unittest
-from src.app import helpers
+from src.app import helpers # pylint: disable=import-error
 
 class TestInversionCount(unittest.TestCase):
     def test_inverstion_count_is_correct(self):
@@ -38,12 +38,12 @@ class TestLinearConflict(unittest.TestCase):
             [1, 14, 3, 4, 5, 6, 7, 8, 9, 6, 11, 12, 13, 2, 15, 16], 1, 13
         ), True)
 
-    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col(self):
+    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col1(self):
         self.assertEqual(helpers.linear_conflict(
             [1, 7, 3, 4, 5, 6, 2, 8, 9, 6, 11, 12, 13, 14, 15, 16], 1, 6
         ), False)
 
-    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col(self):
+    def test_there_is_no_linear_conflict_if_two_pieces_are_not_on_the_same_row_or_col2(self):
         self.assertEqual(helpers.linear_conflict(
             [1, 2, 3, 4, 5, 6, 14, 8, 9, 6, 11, 12, 13, 7, 15, 16], 6, 13
         ), False)

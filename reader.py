@@ -1,3 +1,7 @@
+"""
+File reader
+"""
+
 def puzzle_from_file(file_name):
     """ File reading functionality
     Args:
