@@ -30,10 +30,10 @@ if __name__ == "__main__":
         cmd = input("cmd > ")
         if cmd == "exit":
             break
-        elif cmd == "init":
+        elif cmd == "solve":
             try:
-                puzzle_input = list(map(int, input("numbers separated by spaces > ").split(" ")))
-                heuristic_input = input("heuristic name > ")
+                puzzle_input = list(map(int, input("numbers separated by spaces: ").split(" ")))
+                heuristic_input = input("heuristic name: ")
                 puzzle = Puzzle(puzzle_input, heuristic_input)
                 if not puzzle.has_solution():
                     print("This puzzle has no solution")
@@ -48,10 +48,10 @@ if __name__ == "__main__":
                 print("Puzzle initilization failed")
         elif cmd == "compare":
             try:    
-                heuristic_1 = input("First heuristic > ")
-                heuristic_2 = input("Second heuristic > ")
-                count = int(input("Number of puzzles > "))
-                max_manhattan = int(input("Maximum starting Manhattan distance to a puzzle > "))
+                heuristic_1 = input("first heuristic: ")
+                heuristic_2 = input("second heuristic: ")
+                count = int(input("number of puzzles: "))
+                max_manhattan = int(input("maximum starting Manhattan distance to a puzzle: "))
                 print("")
                 puzzles = 0
                 while puzzles < count:
@@ -66,14 +66,17 @@ if __name__ == "__main__":
                         puzzle.change_heuristic(heuristic_2)
                         info(puzzle)
                         print("-------------------------------------------------------")
+                        puzzles += 1
             except:
                 print("Compare initilization failed")
         elif cmd == "help":
             print("-------------------------------------------------------")
             print("Available commands:")
             print("* help")
-            print("* init (try to solve any puzzle you want to solve)")
+            print("* solve (try to solve any puzzle you want to solve)")
+            print("* compare (compare efficiency between two heuristics)")
             print("* exit")
+            print("-------------------------------------------------------")
 
 
 
