@@ -24,11 +24,11 @@ Lyhenteet heuristiikoille:
 
 Alla olevissa kuvissa on suorituskyky vertailua MD ja MD+LC heuristiikkojen välillä. Vasemmalla olevassa kuvassa on suoritettu vertailu olettaen jokaisen ratkaistun pelin aloitustilanteen MD on 15 ja oikealla puolella MD jokaisella pelin alkutilanteella on 20.
 
-<img src="../img/md15.png" width=440><img src="../img/md20.png" width=440>
+<img src="../img/md15.png" width=480><img src="../img/md20.png" width=480>
 
-Kuvista voidaan huomata, että suorituskyky ratkaista peli on parempi, mitä pienempi lähtötilanteen Manhattan etäisyys on. Ohjelma on siis todella hidas ratkaisemaan peliä satunnaisessa yleisessä tapauksessa, sillä valtaosan peleistä aloitus Manhattan etäisyys on 40 kokoluokkaa. Toisaalta ehdoton yläräja Manhattan etäisyydelle on 80 ja on siis oletettavaa, että tällaisen pelin ratkaisemiseen menee ohjelmalla erittäin paljon aikaa. En ole onnistunut ratkaisemaan yhtään peliä, jossa alkutilanteen MD arvo on suurempaa kuin 50.Lisäksi alkutilanteen MD arvon ollessa suurenpi kuin 25 voidaan huomata selkeä hidastuminen ohjelman toiminnassa. Voidaan siis päätellä, että vain murto-osa peleistä tulee ratkaistuksi järkevässä ajassa. Alla olevassa kuvassa on vertailu alkutilanteen MD arvolla 25.
+Kuvista voidaan huomata, että suorituskyky ratkaista peli on parempi, mitä pienempi lähtötilanteen Manhattan etäisyys on. Ohjelma on siis todella hidas ratkaisemaan peliä satunnaisessa yleisessä tapauksessa, sillä valtaosan peleistä aloitus Manhattan etäisyys on 40 kokoluokkaa. Toisaalta ehdoton yläräja Manhattan etäisyydelle on 80 ja on siis oletettavaa, että tällaisen pelin ratkaisemiseen menee ohjelmalla erittäin paljon aikaa. En ole onnistunut ratkaisemaan yhtään peliä, jossa alkutilanteen MD arvo on suurempaa kuin 50.Lisäksi alkutilanteen MD arvon ollessa suurenpi kuin 25 voidaan huomata selkeä hidastuminen ohjelman toiminnassa. Voidaan siis päätellä, että vain murto-osa peleistä tulee ratkaistuksi järkevässä ajassa. Alla olevassa vasemman puolimmaisimmassa kuvassa on pelit ratkaistuna käyttäen MD arvoa 25 ja oikealla pelit ratkaistu käyttäen MD arvoa 30. Jouduin useamman kerran yrittää generoida oikeanpuolimmaista kuvaa, sillä se jäätyi useampaan otteeseen johonkin peliin. Voidaan huomata, että viimeisen pelin ratkaisuun meni huomattavan paljon aikaa.
 
-<img src="../img/md25.png" width="440">
+<img src="../img/md25.png" width="480"><img src="../img/md30.png" width=480>
 
 ## Työn puutteet
 
