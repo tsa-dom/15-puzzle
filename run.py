@@ -22,9 +22,9 @@ def heuristic_names():
     """ List all available heuristics """
 
     print("-------------------------------------------------------")
-    print("Available heuristics")
-    print("* manhattan (Manhattan distance, default")
-    print("* conflict (Linear conflict with Manhattan distance")
+    print("Available heuristics:")
+    print("* manhattan (Manhattan distance, default)")
+    print("* conflict (Linear conflict with Manhattan distance)")
     print("* euclid (Euclid distance)")
     print("* misplaced (Misplaced distance, actually so slow that it's almost useless)")
     print("-------------------------------------------------------")
@@ -87,22 +87,22 @@ if __name__ == "__main__":
                 heuristic_2 = input("second heuristic: ")
                 count = int(input("number of puzzles: "))
                 max_manhattan = int(input("maximum starting Manhattan distance to a puzzle: "))
+                min_manhattan = int(input("minimum starting Manhattan distance to a puzzle: "))
                 print("")
                 PUZZLES = 0
                 while PUZZLES < count:
                     list_to_shuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     random.shuffle(list_to_shuffle)
-                    if (manhattan_distance(list_to_shuffle) > max_manhattan):
-                        continue
-                    puzzle = Puzzle(list_to_shuffle, heuristic_1)
-                    if puzzle.has_solution():
-                        print("-------------------------------------------------------")
-                        info(puzzle)
-                        print("")
-                        puzzle.change_heuristic(heuristic_2)
-                        info(puzzle)
-                        print("-------------------------------------------------------")
-                        PUZZLES += 1
+                    if (min_manhattan <= manhattan_distance(list_to_shuffle) <= max_manhattan):
+                        puzzle = Puzzle(list_to_shuffle, heuristic_1)
+                        if puzzle.has_solution():
+                            print("-------------------------------------------------------")
+                            info(puzzle)
+                            print("")
+                            puzzle.change_heuristic(heuristic_2)
+                            info(puzzle)
+                            print("-------------------------------------------------------")
+                            PUZZLES += 1
             except: 
                 print("Compare initilization failed")
         elif cmd == "help":
