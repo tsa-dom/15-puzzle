@@ -15,7 +15,7 @@ def get_heuristic(puzzle, heuristic):
     """
     if heuristic == "conflict":
         return manhattan_linear_conflict(puzzle)
-    elif heuristic == "euclidic":
+    elif heuristic == "euclid":
         return euclid_distance(puzzle)
     elif heuristic == "misplaced":
         return misplaced_distance(puzzle)

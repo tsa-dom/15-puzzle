@@ -2,6 +2,7 @@
 
 import time
 import random
+from reader import puzzle_from_file
 from src.app.game import Puzzle
 from src.app.heuristic import manhattan_distance
 
@@ -24,8 +25,16 @@ def heuristic_names():
     print("Available heuristics")
     print("* manhattan (Manhattan distance, default")
     print("* conflict (Linear conflict with Manhattan distance")
-    print("* euclidic (Euclidic distance)")
+    print("* euclid (Euclid distance)")
     print("* misplaced (Misplaced distance, actually so slow that it's almost useless)")
+    print("-------------------------------------------------------")
+
+def result_tree(puzzle):
+    print("-------------------------------------------------------")
+    result = info(puzzle)
+    print("")
+    for i in result:
+        print(i)
     print("-------------------------------------------------------")
 
 if __name__ == "__main__":
@@ -52,14 +61,25 @@ if __name__ == "__main__":
                 if not puzzle.has_solution():
                     print("This puzzle has no solution")
                 else:
-                    print("-------------------------------------------------------")
-                    result = info(puzzle)
-                    print("")
-                    for i in result:
-                        print(i)
-                    print("-------------------------------------------------------")
+                    result_tree(puzzle)
             except:
-                print("Puzzle initilization failed")
+                print("Puzzle initialization failed")
+        elif cmd == "file":
+            heuristic_names()
+            try:
+                file_name = input("specify file name to read (default example.txt): ")
+                heuristic_name = input("heuristic name: ")
+                if (file_name == ""):
+                    file_name = "example.txt"
+                puzzle_state = puzzle_from_file(file_name)
+                puzzle = Puzzle(puzzle_state, heuristic_name)
+                if not puzzle.has_solution():
+                    print("This puzzle has no solution")
+                else:
+                    result_tree(puzzle)
+            except:
+                print("Puzzle initialization failed")
+
         elif cmd == "compare":
             try:
                 heuristic_names()
@@ -88,9 +108,10 @@ if __name__ == "__main__":
         elif cmd == "help":
             print("-------------------------------------------------------")
             print("Available commands:")
-            print("* help")
-            print("* solve (try to solve any puzzle you want to solve)")
-            print("* compare (compare efficiency between two heuristics)")
-            print("* exit")
+            print("* help       (list all available commands)")
+            print("* solve      (try to solve any puzzle you want to solve)")
+            print("* compare    (compare efficiency between two heuristics)")
+            print("* file       (read initial state from the file)")
+            print("* exit       (close program)")
             print("-------------------------------------------------------")
     print("Bye")
