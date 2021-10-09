@@ -2,6 +2,8 @@
 
 ## Kehitysympäristön luominen
 
+Ohjelma voi toimia luomatta kehitysympäristöä, mutta esimerkiksi testikattavuusraportin luominen ei tule onnistumaan ilman tätä vaihetta.
+
 ### Windows
 
 Nämä ohjeet olettavat, että käytät windowsin git bashia. Voit luoda sovelluksen virtuaaliympäristön komennolla
@@ -40,4 +42,10 @@ tai
 
     python3 run.py
 
-Oletusarvoisesti sovellus tulostaa ensimmäisen example.txt tiedostossa olevan pelin. Tiedosto run.py voi vapaasti muokata esimerkiksi ajamaan satunnaisia pelejä ja tehdä tehokkuusvertailua niille.
+Ohjelman käynnistyttyä kysytään käyttäjältä komentoa. Saatavilla olevat komennot pystyy tulostamaan komennolla ```help```. Kaikki käytettävissä olevat komennot:
+
+    help       (listaa kaikki saatavilla olevat komennot)
+    solve      (ratkaise peli annetusta lähtötilanteesta)
+    compare    (vertaile kahta heurstiikkaa satunnaisilla peleillä)
+    file       (ratkaise peli lukemalla se tekstitiedostosta)
+    exit       (sulje ohjelma)
