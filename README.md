@@ -17,3 +17,4 @@
 * [Viikkoraportti 3](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Viikkoraportti3.md)
 * [Viikkoraportti 4](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Viikkoraportti4.md)
 * [Viikkoraportti 5](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Viikkoraportti5.md)
+* [Viikkoraportti 6](https://github.com/tsa-dom/15-puzzle/blob/main/documentation/Viikkoraportti6.md)
