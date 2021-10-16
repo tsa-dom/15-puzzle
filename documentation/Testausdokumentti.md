@@ -27,3 +27,7 @@ Ohjelmasta jätetään testaamatta Euclid distance ja Misplaced distance heurist
 ## Testikattavuus - 9.10.2021
 
 <img src="../img/coverage3.png">
+
+## Testikattavuus - 16.10.2021
+
+<img src="../img/coverage4.png">
