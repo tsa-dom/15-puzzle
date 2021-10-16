@@ -1,4 +1,4 @@
-# Viikkoraportti 5
+# Viikkoraportti 6
 
 ### Mitä olen tehnyt tällä viikolla?
 Olen tällä viikolla viimeistellyt ohjelmaa ennen loppupalautusta.
