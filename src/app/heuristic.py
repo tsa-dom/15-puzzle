@@ -3,7 +3,8 @@ All used heuristics are stored here
 """
 
 from math import sqrt
-from src.app import helpers # pylint: disable=import-error
+from src.app import helpers
+
 
 def get_heuristic(puzzle, heuristic):
     """ Heuristic function getter
@@ -15,23 +16,27 @@ def get_heuristic(puzzle, heuristic):
     """
     if heuristic == "conflict":
         return manhattan_linear_conflict(puzzle)
-    elif heuristic == "euclid":
+    if heuristic == "euclid":
         return euclid_distance(puzzle)
-    elif heuristic == "misplaced":
+    if heuristic == "misplaced":
         return misplaced_distance(puzzle)
-    else:
-        return manhattan_distance(puzzle)
+    return manhattan_distance(puzzle)
+
 
 def misplaced_distance(puzzle):
+    """ Misplaced distance calculation method
+    Args:
+        puzzle [int]: puzzle
+    Returns:
+        int: calculated Misplaced distance
+    """
     distance = 0
-    for p in range(16):
-        piece = puzzle[p] - 1
-        if piece == 15:
-            continue
-        else:
-            if piece == p:
-                distance += 1
+    for i in range(16):
+        piece = puzzle[i] - 1
+        if not piece == 15 and piece == i:
+            distance += 1
     return distance
+
 
 def manhattan_distance(puzzle):
     """ Manhattan distance calculation method
@@ -41,21 +46,29 @@ def manhattan_distance(puzzle):
         int: calculated Manhattan distance
     """
     distance = 0
-    for p in range(16):
-        piece = puzzle[p] - 1
+    for i in range(16):
+        piece = puzzle[i] - 1
         if piece == 15:
             continue
-        distance += abs(piece // 4 - p // 4) + abs(piece % 4 - p % 4)
+        distance += abs(piece // 4 - i // 4) + abs(piece % 4 - i % 4)
     return distance
 
+
 def euclid_distance(puzzle):
+    """ Euclid distance calculation method
+    Args:
+        puzzle [int]: puzzle
+    Returns:
+        int: calculated Euclid distance
+    """
     distance = 0
-    for p in range(16):
-        piece = puzzle[p] - 1
+    for i in range(16):
+        piece = puzzle[i] - 1
         if piece == 15:
             continue
-        distance += sqrt((piece // 4 - p // 4)**2 + (piece % 4 - p % 4)**2)
+        distance += sqrt((piece // 4 - i // 4)**2 + (piece % 4 - i % 4)**2)
     return distance
+
 
 def manhattan_linear_conflict(puzzle):
     """ Mangattan distance with linear conflict
@@ -66,15 +79,15 @@ def manhattan_linear_conflict(puzzle):
     """
     distance = 0
     conflicts = 0
-    for p in range(16):
-        piece = puzzle[p] - 1
+    for i in range(16):
+        piece = puzzle[i] - 1
         if piece == 15:
             continue
-        distance += abs(piece // 4 - p // 4) + abs(piece % 4 - p % 4)
-    for p in range(16):
-        piece = puzzle[p] - 1
-        if piece == 15 or p == 15:
+        distance += abs(piece // 4 - i // 4) + abs(piece % 4 - i % 4)
+    for i in range(16):
+        piece = puzzle[i] - 1
+        if piece == 15 or i == 15:
             continue
-        if helpers.linear_conflict(puzzle, p, piece):
+        if helpers.linear_conflict(puzzle, i, piece):
             conflicts += 1
     return distance + conflicts

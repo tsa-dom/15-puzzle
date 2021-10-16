@@ -2,8 +2,9 @@
 Game module
 """
 
-from src.app import algorithm # pylint: disable=import-error
-from src.app import helpers # pylint: disable=import-error
+from src.app import algorithm
+from src.app import helpers
+
 
 class Puzzle:
     """
@@ -15,7 +16,7 @@ class Puzzle:
         Args:
             puzzle [int]: desired puzzle initial state
         """
-        test = {1, 2, 3 ,4 ,5 ,6 ,7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+        test = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
         if len(puzzle) != 16:
             raise Exception("Invalid puzzle")
         for piece in puzzle:
@@ -39,24 +40,16 @@ class Puzzle:
             bool: true if the solution exist and false if not
         """
 
-        even = None
+        even = False
         for i in range(16):
-            if self.puzzle[i] == 16:
-                if 0 <= i <= 3:
-                    even = False
-                elif 8 <= i <= 11:
-                    even = False
-                else:
-                    even = True
+            if self.puzzle[i] == 16 and (4 <= i <= 7 or i >= 12):
+                even = True
                 break
 
-        inversion_count = helpers.inversion_count(self.puzzle)
-        if even and inversion_count % 2 == 0:
-            return True
-        elif not even and inversion_count % 2 != 0:
-            return True
 
-        return False
+        inversion_count = helpers.inversion_count(self.puzzle)
+
+        return (even and inversion_count % 2 == 0) or (not even and inversion_count % 2 != 0)
 
     def solve(self):
         """ Solve puzzle

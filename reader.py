@@ -2,6 +2,7 @@
 File reader
 """
 
+
 def puzzle_from_file(file_name):
     """ File reading functionality
     Args:
@@ -11,14 +12,14 @@ def puzzle_from_file(file_name):
     """
     puzzle = []
     try:
-        file = open(file_name, "r")
-    except:
+        file = open(file_name, "r", encoding="utf-8")
+    except BaseException:
         return "invalid file name"
     try:
-        for i in range(4):
+        for _ in range(4):
             line = file.readline().split('\n')[0].split(' ')
             for j in range(4):
                 puzzle.append(int(line[j]))
-    except:
+    except BaseException:
         return "initialization failed"
     return puzzle
